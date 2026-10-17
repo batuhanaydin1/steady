@@ -35,7 +35,7 @@ export function AboutDialog() {
           arka uç ve gerçek bir veritabanıyla geliştirilmiş bir portföy projesidir.
         </p>
         <p className="about__heading">Şunlarla geliştirildi</p>
-        <ul className="planned__list">
+        <ul className="about__list">
           {STACK.map((item) => (
             <li key={item}>{item}</li>
           ))}

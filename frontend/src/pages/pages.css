@@ -55,34 +55,6 @@
   color: var(--text-faint);
 }
 
-/* ---------- Stack list (About dialog) ---------- */
-
-.planned__list {
-  margin: var(--space-3) 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: var(--space-2);
-}
-
-.planned__list li {
-  position: relative;
-  padding-left: var(--space-5);
-  color: var(--text-muted);
-  font-size: var(--text-sm);
-}
-
-.planned__list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background: var(--accent);
-}
-
 /* ---------- Connection card ---------- */
 
 .connection__line {
@@ -153,6 +125,32 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-faint);
+}
+
+.about__list {
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.about__list li {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.about__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
 }
 
 /* ---------- Settings rows ---------- */
