@@ -1,0 +1,234 @@
+/* =========================================================================
+   Tasks
+   ========================================================================= */
+
+.tasks {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.tasks__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.tasks__confirm-note {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Quick add ---------- */
+
+.task-composer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.task-composer > .field {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-composer > .btn {
+  flex: none;
+}
+
+/* ---------- Edit dialog ---------- */
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- List ---------- */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.task:hover {
+  background: var(--surface-hover);
+}
+
+.task--skeleton,
+.task--skeleton:hover {
+  background: var(--surface-2);
+}
+
+.task--done .task__title {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* The task that focus sessions are currently linked to. */
+.task--active {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: var(--accent-soft);
+}
+
+.task--active:hover {
+  background: color-mix(in srgb, var(--accent) 20%, var(--surface-2));
+}
+
+/* Waiting on a request for this row. */
+.task--pending {
+  opacity: 0.6;
+}
+
+/* ---------- Completion checkbox ---------- */
+
+.task__check {
+  position: relative;
+  display: flex;
+  flex: none;
+  margin-top: 0.1rem;
+  cursor: pointer;
+}
+
+.task__box {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: transparent;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.task__check:hover .task__box {
+  border-color: var(--accent);
+}
+
+.task__checkbox:checked + .task__box {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.task__checkbox:focus-visible + .task__box {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.task__checkbox:disabled + .task__box {
+  opacity: 0.55;
+}
+
+/* ---------- Row content ---------- */
+
+.task__body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.task__title {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.task__notes {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.task__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+/* Solid accent so the label stays readable on the tinted active row. */
+.task__flag {
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+}
+
+/* ---------- Row actions ---------- */
+
+.task__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ---------- Focus card ---------- */
+
+.active-task {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.active-task__notes {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 700px) {
+  .task {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: var(--space-3);
+  }
+
+  .task__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  .task-composer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,264 @@
+/* =========================================================================
+   Page-level layout, plus the skeleton placeholders that still stand in for a
+   later phase (persisted timer preferences).
+   ========================================================================= */
+
+.grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.grid--focus {
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.grid--stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+
+.grid--settings {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.grid--stats > .card {
+  min-width: 0;
+}
+
+.grid__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.grid__main {
+  min-width: 0;
+}
+
+/* Spans every column of a two-column page grid. */
+.grid__wide {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+/* ---------- Focus page placeholders ---------- */
+
+.placeholder-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  text-align: center;
+}
+
+.placeholder-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--border);
+}
+
+.placeholder-controls__buttons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.placeholder-controls__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.placeholder-note {
+  max-width: 44ch;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.placeholder-note--sm {
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+}
+
+/* ---------- List placeholders ---------- */
+
+.list-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.list-placeholder__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* ---------- Planned feature list ---------- */
+
+.planned {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.planned__title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.planned__list {
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.planned__list li {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.planned__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+}
+
+/* ---------- Connection card ---------- */
+
+.connection__line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.connection__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.connection__grid dt {
+  color: var(--text-faint);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.connection__grid dd {
+  margin: var(--space-1) 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.connection__error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.connection__error-title {
+  color: var(--danger-ink);
+  font-weight: 600;
+}
+
+.connection__muted {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.connection__muted code,
+.placeholder-note code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+/* ---------- About dialog ---------- */
+
+.about__text {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.about__heading {
+  margin-top: var(--space-5);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ---------- Settings rows ---------- */
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.setting-row + .setting-row {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.setting-row__label {
+  font-weight: 600;
+}
+
+.setting-row__hint {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+  .grid--focus,
+  .grid--stats,
+  .grid--settings {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .connection__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .setting-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0f14" />
+    <script>
+      // Applies the stored/system theme before first paint to avoid a flash.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('steady.theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          document.documentElement.setAttribute('data-theme', theme)
+          // Mirrors THEME_COLOR in src/theme/theme.ts, so the browser chrome matches from the
+          // first frame instead of waiting for React to mount.
+          var meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f6f8fb' : '#0b0f14')
+        } catch (error) {
+          /* keep the default theme */
+        }
+      })()
+    </script>
+    <meta
+      name="description"
+      content="Steady — a focus timer and task manager that helps you build consistency, one session at a time."
+    />
+    <title>Steady — Build consistency. One session at a time.</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

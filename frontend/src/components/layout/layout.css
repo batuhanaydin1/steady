@@ -1,0 +1,335 @@
+/* =========================================================================
+   Application chrome — header, navigation, page heading and footer.
+   ========================================================================= */
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  gap: var(--space-5);
+}
+
+/* ---------- Skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: calc(-1 * var(--space-8));
+  z-index: 200;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: top var(--dur-normal) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  text-decoration: none;
+}
+
+/* ---------- Header ---------- */
+
+.shell__header {
+  position: sticky;
+  top: var(--space-3);
+  z-index: 50;
+}
+
+.shell__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+  text-decoration: none;
+  flex: none;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand__name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-inline: auto;
+}
+
+.nav__link {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.nav__link:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav__link--active {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.shell__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+}
+
+.connection-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+  background: var(--text-faint);
+  flex: none;
+}
+
+.connection-dot--online {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.connection-dot--offline {
+  background: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-soft);
+}
+
+.connection-dot--checking {
+  background: var(--info);
+  animation: dot-pulse 1.4s var(--ease-in-out) infinite;
+}
+
+/* Rendered as a button when offline: clicking it re-checks the API. */
+.connection-dot--button {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.connection-dot--button:hover {
+  background: var(--danger-ink);
+}
+
+.connection-dot--button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* ---------- Running timer indicator ---------- */
+
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--radius-full);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.timer-pill:hover {
+  text-decoration: none;
+}
+
+.timer-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+}
+
+.timer-pill--running .timer-pill__dot {
+  animation: dot-pulse 1.6s var(--ease-in-out) infinite;
+}
+
+.timer-pill--paused {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+
+/* ---------- Main + page heading ---------- */
+
+.shell__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--space-5);
+  outline: none;
+}
+
+.page-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  animation: page-in var(--dur-normal) var(--ease-out) both;
+}
+
+.page-head__title {
+  font-size: var(--text-2xl);
+}
+
+.page-head__description {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Footer ---------- */
+
+.shell__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+  color: var(--text-faint);
+  font-size: var(--text-xs);
+}
+
+.shell__footer-brand {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Text button that reads as an inline link but keeps button semantics. */
+.link-button {
+  /* The padding grows the hit area past the 24px minimum target size; the
+     negative margin keeps the text sitting exactly where it did. */
+  padding: var(--space-1) var(--space-2);
+  margin: calc(var(--space-1) * -1) calc(var(--space-2) * -1);
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+}
+
+.link-button:hover {
+  color: var(--accent-ink);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 820px) {
+  .shell__bar {
+    flex-wrap: wrap;
+    border-radius: var(--radius-lg);
+    row-gap: var(--space-2);
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    margin-inline: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: var(--space-1);
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__link {
+    white-space: nowrap;
+  }
+
+  .shell__tools {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .shell {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .shell__header {
+    top: var(--space-2);
+  }
+
+  .brand__name {
+    font-size: var(--text-base);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+/* Both pulses below are status decoration — the pill and the dot label the state
+   in text as well, so they do not need to move. */
+@media (prefers-reduced-motion: reduce) {
+  .connection-dot--checking,
+  .timer-pill--running .timer-pill__dot {
+    animation: none;
+  }
+}

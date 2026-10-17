@@ -1,0 +1,37 @@
+# ---------- .NET / backend ----------
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/*
+!.vscode/extensions.json
+
+# ---------- Node / frontend ----------
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# ---------- Secrets / environment ----------
+# Never commit real connection strings or credentials.
+.env
+.env.*
+!.env.example
+appsettings.Development.local.json
+secrets.json
+
+# ---------- Logs & temp ----------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pids/
+*.pid
+*.seed
+
+# ---------- OS / editors ----------
+.DS_Store
+Thumbs.db
+.idea/
