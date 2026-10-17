@@ -127,7 +127,7 @@ export function useTimerPreferences(): TimerPreferencesHandle {
       setStatus('offline')
       setFailure({
         kind: 'save',
-        message: messageFor(error, 'Could not save your timer settings.'),
+        message: messageFor(error, 'Zamanlayıcı ayarları kaydedilemedi.'),
       })
     }
   }, [])
@@ -167,7 +167,7 @@ export function useTimerPreferences(): TimerPreferencesHandle {
         setStatus('offline')
         setFailure({
           kind: 'load',
-          message: messageFor(error, 'Could not load your saved timer settings.'),
+          message: messageFor(error, 'Kayıtlı zamanlayıcı ayarları yüklenemedi.'),
         })
       }
     }

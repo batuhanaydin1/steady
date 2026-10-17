@@ -3,9 +3,9 @@ import type { TaskFilter, TaskResponse } from '../../types/api.ts'
 import { TaskRow } from './TaskRow.tsx'
 
 const FILTER_NOUN: Record<TaskFilter, string> = {
-  all: 'tasks',
-  pending: 'pending tasks',
-  completed: 'completed tasks',
+  all: 'görev',
+  pending: 'bekleyen görev',
+  completed: 'tamamlanan görev',
 }
 
 interface TaskListProps {
@@ -43,7 +43,7 @@ export function TaskList({
 }: TaskListProps) {
   if (state === 'loading') {
     return (
-      <ul className="task-list" aria-busy="true" aria-label="Loading tasks">
+      <ul className="task-list" aria-busy="true" aria-label="Görevler yükleniyor">
         {[0, 1, 2].map((index) => (
           <li className="task task--skeleton" key={index}>
             <Skeleton circle height="22px" width="22px" />
@@ -60,11 +60,11 @@ export function TaskList({
   if (state === 'error') {
     return (
       <EmptyState
-        title="Could not load your tasks"
-        description={loadError ?? 'The Steady API did not answer.'}
+        title="Görevler yüklenemedi"
+        description={loadError ?? 'Steady API yanıt vermedi.'}
         action={
           <Button variant="secondary" size="sm" onClick={onRetry}>
-            Try again
+            Tekrar dene
           </Button>
         }
       />
@@ -75,11 +75,11 @@ export function TaskList({
     if (hiddenByFilter) {
       return (
         <EmptyState
-          title={`No ${FILTER_NOUN[filter]}`}
-          description="Nothing matches this filter right now."
+          title={`${FILTER_NOUN[filter]} yok`}
+          description="Şu anda bu filtreye uyan bir şey yok."
           action={
             <Button variant="secondary" size="sm" onClick={onShowAll}>
-              Show all tasks
+              Tüm görevleri göster
             </Button>
           }
         />
@@ -88,8 +88,8 @@ export function TaskList({
 
     return (
       <EmptyState
-        title="No tasks yet"
-        description="Add your first task above, then link a focus session to it."
+        title="Henüz görev yok"
+        description="Yukarıdan ilk görevini ekle, sonra ona bir odak oturumu bağla."
       />
     )
   }

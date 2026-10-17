@@ -20,12 +20,12 @@ export function SessionHistoryCard({ onOpenStats }: SessionHistoryCardProps) {
 
   return (
     <Card
-      title="History"
-      subtitle="Your recent focus sessions"
+      title="Geçmiş"
+      subtitle="Son odak oturumların"
       footer={
         sessions.length > RECENT_LIMIT ? (
           <Button variant="ghost" size="sm" onClick={onOpenStats}>
-            View all sessions
+            Tüm oturumları gör
           </Button>
         ) : undefined
       }
@@ -37,20 +37,20 @@ export function SessionHistoryCard({ onOpenStats }: SessionHistoryCardProps) {
           action={
             <>
               <button type="button" className="notice__action" onClick={retryRecord}>
-                Try again
+                Tekrar dene
               </button>
               <button type="button" className="notice__action" onClick={dismissUnsaved}>
-                Discard
+                Yok say
               </button>
             </>
           }
         >
-          Your last session could not be saved.
+          Son oturumun kaydedilemedi.
         </Notice>
       ) : null}
 
       {state === 'loading' ? (
-        <ul className="session-list" aria-busy="true" aria-label="Loading session history">
+        <ul className="session-list" aria-busy="true" aria-label="Oturum geçmişi yükleniyor">
           {[0, 1, 2].map((index) => (
             <li className="session session--skeleton" key={index}>
               <Skeleton height="13px" width="18%" />
@@ -63,11 +63,11 @@ export function SessionHistoryCard({ onOpenStats }: SessionHistoryCardProps) {
 
       {state === 'error' ? (
         <EmptyState
-          title="Could not load your history"
-          description={loadError ?? 'The Steady API did not answer.'}
+          title="Oturum geçmişi yüklenemedi"
+          description={loadError ?? 'Steady API\'si yanıt vermedi.'}
           action={
             <Button variant="secondary" size="sm" onClick={reload}>
-              Try again
+              Tekrar dene
             </Button>
           }
         />
@@ -75,8 +75,8 @@ export function SessionHistoryCard({ onOpenStats }: SessionHistoryCardProps) {
 
       {state === 'ready' && recent.length === 0 ? (
         <EmptyState
-          title="No sessions yet"
-          description="Finish a focus session and it will be recorded here."
+          title="Henüz oturum yok"
+          description="Bir odak oturumu tamamla, kaydı burada görünecek."
         />
       ) : null}
 

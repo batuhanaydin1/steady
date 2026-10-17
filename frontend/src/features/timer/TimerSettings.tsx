@@ -32,13 +32,13 @@ export function TimerSettings() {
   return (
     <Card
       className="timer-settings"
-      title="Timer settings"
+      title="Zamanlayıcı ayarları"
       subtitle={
-        preferencesStatus === 'synced' ? 'Saved to your Steady database' : 'Saved on this device'
+        preferencesStatus === 'synced' ? 'Steady veritabanına kaydedildi' : 'Bu cihaza kaydedildi'
       }
     >
       <DurationStepper
-        label="Focus length"
+        label="Odak süresi"
         value={prefs.workMinutes}
         min={WORK_MIN_MINUTES}
         max={WORK_MAX_MINUTES}
@@ -46,7 +46,7 @@ export function TimerSettings() {
         disabled={locked}
       />
       <DurationStepper
-        label="Break length"
+        label="Mola süresi"
         value={prefs.breakMinutes}
         min={BREAK_MIN_MINUTES}
         max={BREAK_MAX_MINUTES}
@@ -56,17 +56,17 @@ export function TimerSettings() {
 
       <div className="timer-settings__switches">
         <Switch
-          label="Sound alert"
-          hint="A short chime when a session ends."
+          label="Sesli uyarı"
+          hint="Oturum bittiğinde kısa bir zil sesi."
           checked={prefs.soundEnabled}
           onChange={setSoundEnabled}
         />
         <Switch
-          label="Desktop notification"
+          label="Masaüstü bildirimi"
           hint={
             notificationsBlocked
-              ? 'This browser has not allowed notifications yet.'
-              : 'Your browser will ask for permission once.'
+              ? 'Bu tarayıcı henüz bildirimlere izin vermedi.'
+              : 'Tarayıcı bir kez izin isteyecek.'
           }
           checked={prefs.notificationsEnabled}
           onChange={setNotificationsEnabled}
@@ -78,7 +78,7 @@ export function TimerSettings() {
           tone="danger"
           action={
             <Button variant="ghost" size="sm" onClick={retryPreferences}>
-              Try again
+              Tekrar dene
             </Button>
           }
         >
@@ -88,7 +88,7 @@ export function TimerSettings() {
 
       {locked ? (
         <p className="placeholder-note placeholder-note--sm">
-          Reset the timer to change its length while a session is in progress.
+          Oturum sürerken süreyi değiştirmek için zamanlayıcıyı sıfırla.
         </p>
       ) : null}
     </Card>

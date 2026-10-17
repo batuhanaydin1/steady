@@ -32,16 +32,16 @@ export function countByFilter(tasks: readonly TaskResponse[]): Record<TaskFilter
 
 export function validateTitle(title: string): string | null {
   const trimmed = title.trim()
-  if (trimmed.length === 0) return 'A title is required.'
+  if (trimmed.length === 0) return 'Başlık zorunlu.'
   if (trimmed.length > TITLE_MAX_LENGTH) {
-    return `The title must be ${TITLE_MAX_LENGTH} characters or fewer.`
+    return `Başlık en fazla ${TITLE_MAX_LENGTH} karakter olabilir.`
   }
   return null
 }
 
 export function validateNotes(notes: string): string | null {
   if (notes.trim().length > NOTES_MAX_LENGTH) {
-    return `Notes must be ${NOTES_MAX_LENGTH} characters or fewer.`
+    return `Notlar en fazla ${NOTES_MAX_LENGTH} karakter olabilir.`
   }
   return null
 }

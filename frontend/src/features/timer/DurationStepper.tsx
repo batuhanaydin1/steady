@@ -48,7 +48,7 @@ export function DurationStepper({ label, value, min, max, onChange, disabled = f
       <div className="stepper__controls">
         <IconButton
           size="sm"
-          label={`Decrease ${label}`}
+          label={`${label}ni azalt`}
           disabled={disabled || value <= min}
           onClick={() => setValue(value - 1)}
         >
@@ -68,10 +68,10 @@ export function DurationStepper({ label, value, min, max, onChange, disabled = f
             if (!Number.isNaN(parsed)) setValue(parsed)
           }}
         />
-        <span className="stepper__unit">min</span>
+        <span className="stepper__unit">dk</span>
         <IconButton
           size="sm"
-          label={`Increase ${label}`}
+          label={`${label}ni artır`}
           disabled={disabled || value >= max}
           onClick={() => setValue(value + 1)}
         >

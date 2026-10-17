@@ -31,7 +31,7 @@ export function useApiHealth() {
         const message =
           error instanceof ApiError
             ? error.message
-            : 'Something went wrong while contacting the API.'
+            : 'API ile iletişim kurulurken bir sorun oluştu.'
 
         setState({ status: 'offline', message })
       })

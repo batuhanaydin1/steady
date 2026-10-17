@@ -7,13 +7,13 @@ export function SettingsPage() {
   return (
     <div className="grid grid--settings">
       <Card
-        title="Appearance"
-        subtitle="Saved on this device and restored on your next visit"
+        title="Görünüm"
+        subtitle="Bu cihaza kaydedilir, sonraki ziyaretinde geri yüklenir"
       >
         <div className="setting-row">
           <div>
-            <p className="setting-row__label">Colour theme</p>
-            <p className="setting-row__hint">Switch between the dark and light Steady themes.</p>
+            <p className="setting-row__label">Renk teması</p>
+            <p className="setting-row__hint">Koyu ve açık Steady teması arasında geçiş yap.</p>
           </div>
           <ThemeToggle />
         </div>
@@ -22,9 +22,9 @@ export function SettingsPage() {
       <ApiStatusCard />
 
       <Card
-        title="Timer defaults"
-        subtitle="Work length, break length and alerts"
-        actions={<Badge tone="neutral">Phase 8</Badge>}
+        title="Zamanlayıcı varsayılanları"
+        subtitle="Odak süresi, mola süresi ve uyarılar"
+        actions={<Badge tone="neutral">Aşama 8</Badge>}
       >
         <div className="list-placeholder" aria-hidden="true">
           {[0, 1, 2].map((row) => (
@@ -35,7 +35,7 @@ export function SettingsPage() {
           ))}
         </div>
         <p className="placeholder-note placeholder-note--sm">
-          These preferences are stored in PostgreSQL so they follow you between sessions.
+          Bu tercihler PostgreSQL'de saklanır, böylece seninle birlikte kalır.
         </p>
       </Card>
     </div>

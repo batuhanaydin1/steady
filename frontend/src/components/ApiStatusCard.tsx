@@ -11,42 +11,42 @@ export function ApiStatusCard() {
 
   return (
     <Card
-      title="Connection"
+      title="Bağlantı"
       subtitle={API_BASE_URL}
       actions={
         state.status === 'online' ? (
-          <Badge tone="accent">Connected</Badge>
+          <Badge tone="accent">Bağlı</Badge>
         ) : state.status === 'offline' ? (
-          <Badge tone="danger">Offline</Badge>
+          <Badge tone="danger">Bağlantı yok</Badge>
         ) : (
-          <Badge tone="info">Checking</Badge>
+          <Badge tone="info">Kontrol ediliyor</Badge>
         )
       }
     >
       <div aria-live="polite">
         {state.status === 'checking' && (
           <p className="connection__line">
-            <Spinner size={16} label="Checking the Steady API connection" />
-            <span className="connection__muted">Contacting the Steady API…</span>
+            <Spinner size={16} label="Steady API bağlantısı kontrol ediliyor" />
+            <span className="connection__muted">Steady API'ye bağlanılıyor…</span>
           </p>
         )}
 
         {state.status === 'online' && (
           <dl className="connection__grid">
             <div>
-              <dt>Service</dt>
+              <dt>Servis</dt>
               <dd>{state.data.service}</dd>
             </div>
             <div>
-              <dt>Version</dt>
+              <dt>Sürüm</dt>
               <dd>{state.data.version}</dd>
             </div>
             <div>
-              <dt>Status</dt>
+              <dt>Durum</dt>
               <dd>{state.data.status}</dd>
             </div>
             <div>
-              <dt>Checked at</dt>
+              <dt>Kontrol zamanı</dt>
               <dd>
                 <time dateTime={state.data.timestampUtc}>
                   {new Date(state.data.timestampUtc).toLocaleTimeString()}
@@ -60,11 +60,11 @@ export function ApiStatusCard() {
           <div className="connection__error">
             <p className="connection__error-title">{state.message}</p>
             <p className="connection__muted">
-              Start the API with <code>dotnet run</code> inside <code>backend/Steady.Api</code>{' '}
-              and try again.
+              API'yi <code>backend/Steady.Api</code> içinde <code>dotnet run</code> ile başlatıp
+              tekrar dene.
             </p>
             <Button variant="secondary" size="sm" onClick={retry}>
-              Retry
+              Tekrar dene
             </Button>
           </div>
         )}

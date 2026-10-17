@@ -58,7 +58,7 @@ export function TasksProvider({ children }: { children: ReactNode }) {
         if (!active) return
         if (error instanceof DOMException && error.name === 'AbortError') return
         setState('error')
-        setLoadError(messageFor(error, 'Could not load your tasks.'))
+        setLoadError(messageFor(error, 'Görevler yüklenemedi.'))
       })
 
     return () => {
@@ -94,7 +94,7 @@ export function TasksProvider({ children }: { children: ReactNode }) {
   const update = useCallback(
     async (id: string, draft: TaskDraft & { isCompleted: boolean }) => {
       const previous = tasksRef.current.find((task) => task.id === id)
-      if (!previous) throw new Error('That task no longer exists.')
+      if (!previous) throw new Error('Bu görev artık mevcut değil.')
 
       const now = new Date().toISOString()
       const optimistic: TaskResponse = {
@@ -152,7 +152,7 @@ export function TasksProvider({ children }: { children: ReactNode }) {
       setTasks((current) => sortTasks(current.map((item) => (item.id === task.id ? saved : item))))
     } catch (error) {
       setTasks((current) => sortTasks(current.map((item) => (item.id === task.id ? task : item))))
-      setActionError(messageFor(error, 'Could not update that task.'))
+      setActionError(messageFor(error, 'Görev güncellenemedi.'))
     } finally {
       setPendingId(null)
     }
@@ -183,7 +183,7 @@ export function TasksProvider({ children }: { children: ReactNode }) {
         await deleteTask(id)
       } catch (error) {
         setTasks((current) => sortTasks([...current, previous]))
-        setActionError(messageFor(error, 'Could not delete that task.'))
+        setActionError(messageFor(error, 'Görev silinemedi.'))
       } finally {
         setPendingId(null)
       }

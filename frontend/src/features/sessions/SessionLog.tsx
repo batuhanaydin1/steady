@@ -14,7 +14,7 @@ export function SessionLog() {
 
   if (state === 'loading') {
     return (
-      <div className="session-log" aria-busy="true" aria-label="Loading session history">
+      <div className="session-log" aria-busy="true" aria-label="Oturum geçmişi yükleniyor">
         {[0, 1].map((group) => (
           <section className="session-day" key={group}>
             <div className="session-day__header">
@@ -39,11 +39,11 @@ export function SessionLog() {
   if (state === 'error') {
     return (
       <EmptyState
-        title="Could not load your history"
-        description={loadError ?? 'The Steady API did not answer.'}
+        title="Oturum geçmişi yüklenemedi"
+        description={loadError ?? 'Steady API\'si yanıt vermedi.'}
         action={
           <Button variant="secondary" size="sm" onClick={reload}>
-            Try again
+            Tekrar dene
           </Button>
         }
       />
@@ -53,8 +53,8 @@ export function SessionLog() {
   if (days.length === 0) {
     return (
       <EmptyState
-        title="No sessions recorded yet"
-        description="Every focus session you finish is saved here with the task it was linked to."
+        title="Henüz kayıtlı oturum yok"
+        description="Tamamladığın her odak oturumu, bağlı olduğu görevle birlikte burada saklanır."
       />
     )
   }

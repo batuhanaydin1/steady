@@ -5,8 +5,8 @@
 
 import type { FocusSessionResponse } from '../../types/api.ts'
 
-const TIME_FORMAT = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' })
-const DAY_FORMAT = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short' })
+const TIME_FORMAT = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' })
+const DAY_FORMAT = new Intl.DateTimeFormat('tr-TR', { weekday: 'short', day: 'numeric', month: 'short' })
 
 /**
  * How many recent sessions the app loads in a single request. It bounds the
@@ -15,13 +15,13 @@ const DAY_FORMAT = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: '
  */
 export const HISTORY_LIMIT = 100
 
-/** `25 min`, `1 h`, `1 h 30 min` — hours only when they are needed. */
+/** `25 dk`, `1 sa`, `1 sa 30 dk` — hours only when they are needed. */
 export function formatMinutes(minutes: number): string {
-  if (minutes < 60) return `${minutes} min`
+  if (minutes < 60) return `${minutes} dk`
 
   const hours = Math.floor(minutes / 60)
   const rest = minutes % 60
-  return rest === 0 ? `${hours} h` : `${hours} h ${rest} min`
+  return rest === 0 ? `${hours} sa` : `${hours} sa ${rest} dk`
 }
 
 export function formatTime(iso: string): string {
@@ -30,7 +30,7 @@ export function formatTime(iso: string): string {
 }
 
 export function formatSessionCount(count: number): string {
-  return `${count} ${count === 1 ? 'session' : 'sessions'}`
+  return `${count} oturum`
 }
 
 /**
@@ -39,8 +39,8 @@ export function formatSessionCount(count: number): string {
  */
 export function describeHistory(count: number): string {
   return count >= HISTORY_LIMIT
-    ? `Showing the latest ${HISTORY_LIMIT} sessions.`
-    : `${formatSessionCount(count)} recorded.`
+    ? `Son ${HISTORY_LIMIT} oturum gösteriliyor.`
+    : `${formatSessionCount(count)} kayıtlı.`
 }
 
 /** A local calendar date as `YYYY-MM-DD`, which also sorts chronologically. */
@@ -56,7 +56,7 @@ export function dayKey(iso: string): string {
   return Number.isNaN(date.getTime()) ? '' : localDayKey(date)
 }
 
-/** `Today`, `Yesterday` or `Fri 17 Oct`, relative to `now`. */
+/** `Bugün`, `Dün` or `Cum 17 Eki`, relative to `now`. */
 export function dayLabel(iso: string, now = new Date()): string {
   const key = dayKey(iso)
   if (key === '') return ''
@@ -68,8 +68,8 @@ export function dayLabel(iso: string, now = new Date()): string {
   const asDate = new Date(iso)
   const day = new Date(asDate.getFullYear(), asDate.getMonth(), asDate.getDate())
 
-  if (key === localDayKey(today)) return 'Today'
-  if (key === localDayKey(yesterday)) return 'Yesterday'
+  if (key === localDayKey(today)) return 'Bugün'
+  if (key === localDayKey(yesterday)) return 'Dün'
   return DAY_FORMAT.format(day)
 }
 

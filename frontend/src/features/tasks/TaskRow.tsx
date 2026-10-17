@@ -25,7 +25,7 @@ export function TaskRow({
   onFocus,
 }: TaskRowProps) {
   const stamp = formatTaskDate(task.isCompleted ? task.completedAt : task.createdAt)
-  const meta = task.isCompleted ? `Completed ${stamp}` : `Added ${stamp}`
+  const meta = task.isCompleted ? `Tamamlandı ${stamp}` : `Eklendi ${stamp}`
 
   return (
     <li
@@ -57,7 +57,7 @@ export function TaskRow({
           </svg>
         </span>
         <span className="sr-only">
-          {task.isCompleted ? 'Reopen' : 'Complete'} {task.title}
+          {task.isCompleted ? 'Yeniden aç' : 'Tamamla'} {task.title}
         </span>
       </label>
 
@@ -66,7 +66,7 @@ export function TaskRow({
         {task.notes ? <p className="task__notes">{task.notes}</p> : null}
         <p className="task__meta">
           <span>{meta}</span>
-          {isActive ? <span className="task__flag">Focus target</span> : null}
+          {isActive ? <span className="task__flag">Odak hedefi</span> : null}
         </p>
       </div>
 
@@ -74,21 +74,26 @@ export function TaskRow({
         <Button
           size="sm"
           variant="ghost"
-          aria-label={`Focus on ${task.title}`}
+          aria-label={`${task.title} görevine odaklan`}
           onClick={() => onFocus(task)}
         >
-          Focus
-        </Button>
-        <Button size="sm" variant="ghost" aria-label={`Edit ${task.title}`} onClick={() => onEdit(task)}>
-          Edit
+          Odaklan
         </Button>
         <Button
           size="sm"
           variant="ghost"
-          aria-label={`Delete ${task.title}`}
+          aria-label={`${task.title} görevini düzenle`}
+          onClick={() => onEdit(task)}
+        >
+          Düzenle
+        </Button>
+        <Button
+          size="sm"
+          variant="ghost"
+          aria-label={`${task.title} görevini sil`}
           onClick={() => onDelete(task)}
         >
-          Delete
+          Sil
         </Button>
       </div>
     </li>

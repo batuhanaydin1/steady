@@ -18,8 +18,8 @@ export const BREAK_MAX_MINUTES = 30
 export const WORK_PRESETS = [15, 25, 30, 45, 60, 90] as const
 
 export const MODE_LABEL: Record<TimerMode, string> = {
-  work: 'Focus',
-  break: 'Break',
+  work: 'Odak',
+  break: 'Mola',
 }
 
 export interface TimerPreferences {

@@ -20,7 +20,7 @@ import { useTimerPreferences } from './useTimerPreferences.ts'
 
 const SESSION_KEY = 'steady.timer.session'
 const TICK_INTERVAL_MS = 250
-const BASE_TITLE = 'Steady — Build consistency. One session at a time.'
+const BASE_TITLE = 'Steady — İstikrarı kur, her seferinde bir oturum.'
 
 /**
  * Owns the focus timer for the whole app, so a running session keeps ticking
@@ -73,8 +73,8 @@ export function TimerProvider({ children }: { children: ReactNode }) {
     if (current.soundEnabled) playChime()
     if (current.notificationsEnabled) {
       showNotification(
-        finished.mode === 'work' ? 'Focus session complete' : 'Break finished',
-        next === 'work' ? 'Time to focus again.' : 'Take a break — you earned it.',
+        finished.mode === 'work' ? 'Odak oturumu tamamlandı' : 'Mola bitti',
+        next === 'work' ? 'Yeniden odaklanma zamanı.' : 'Mola ver, hak ettin.',
       )
     }
 

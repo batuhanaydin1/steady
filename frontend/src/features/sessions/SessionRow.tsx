@@ -6,7 +6,7 @@ export function SessionRow({ session }: { session: FocusSessionResponse }) {
   return (
     <li className="session">
       <span className="session__time">{formatTime(session.completedAt)}</span>
-      <span className="session__task">{session.taskTitle ?? 'No task'}</span>
+      <span className="session__task">{session.taskTitle ?? 'Görev yok'}</span>
       <span className="session__duration">{formatMinutes(session.durationMinutes)}</span>
     </li>
   )

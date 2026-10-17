@@ -17,7 +17,7 @@ export function TimerStatusPill() {
     <a
       className={cn('timer-pill', `timer-pill--${status}`)}
       href="#/focus"
-      aria-label={`${MODE_LABEL[mode]} ${status === 'paused' ? 'paused' : 'running'}, ${minutesLeft} minutes remaining. Go to the timer.`}
+      aria-label={`${MODE_LABEL[mode]} ${status === 'paused' ? 'duraklatıldı' : 'çalışıyor'}, ${minutesLeft} dakika kaldı. Zamanlayıcıya git.`}
     >
       <span className="timer-pill__dot" aria-hidden="true" />
       <span className="timer-pill__label">{MODE_LABEL[mode]}</span>

@@ -53,10 +53,10 @@ export function TasksPage({ onStartFocus }: TasksPageProps) {
   return (
     <div className="tasks">
       <Card
-        title="Tasks"
-        subtitle="Create, complete and filter"
+        title="Görevler"
+        subtitle="Oluştur, tamamla ve filtrele"
         actions={
-          <Badge tone={counts.pending > 0 ? 'accent' : 'neutral'}>{counts.pending} pending</Badge>
+          <Badge tone={counts.pending > 0 ? 'accent' : 'neutral'}>{counts.pending} bekleyen</Badge>
         }
       >
         <TaskComposer onCreate={create} saving={saving} />
@@ -65,7 +65,7 @@ export function TasksPage({ onStartFocus }: TasksPageProps) {
           <TaskFilters value={filter} onChange={setFilter} counts={counts} />
           {state === 'ready' ? (
             <Button variant="ghost" size="sm" onClick={reload} disabled={state !== 'ready'}>
-              Refresh
+              Yenile
             </Button>
           ) : null}
         </div>
@@ -76,7 +76,7 @@ export function TasksPage({ onStartFocus }: TasksPageProps) {
             role="alert"
             action={
               <button type="button" className="notice__action" onClick={dismissActionError}>
-                Dismiss
+                Kapat
               </button>
             }
           >
@@ -121,28 +121,28 @@ export function TasksPage({ onStartFocus }: TasksPageProps) {
       <Modal
         open={taskToDelete !== null}
         size="sm"
-        title="Delete this task?"
+        title="Bu görev silinsin mi?"
         description={
-          taskToDelete ? `“${taskToDelete.title}” will be removed permanently.` : undefined
+          taskToDelete ? `“${taskToDelete.title}” kalıcı olarak silinecek.` : undefined
         }
         onClose={() => setTaskToDelete(null)}
         footer={
           <>
             <Button variant="secondary" onClick={() => setTaskToDelete(null)}>
-              Cancel
+              Vazgeç
             </Button>
             <Button
               variant="danger"
               onClick={confirmDelete}
               loading={taskToDelete !== null && pendingId === taskToDelete.id}
             >
-              Delete
+              Sil
             </Button>
           </>
         }
       >
         <p className="tasks__confirm-note">
-          Completed work is not affected — only this task is removed.
+          Tamamlanan çalışmalar etkilenmez — yalnızca bu görev silinir.
         </p>
       </Modal>
     </div>

@@ -7,14 +7,14 @@ import { formatClock, MODE_LABEL, WORK_PRESETS } from './timer.ts'
 import type { TimerMode } from './timer.ts'
 
 const MODE_OPTIONS = [
-  { value: 'work', label: 'Focus' },
-  { value: 'break', label: 'Break' },
+  { value: 'work', label: 'Odak' },
+  { value: 'break', label: 'Mola' },
 ] as const
 
 const STATUS_LABEL = {
-  idle: 'Ready',
-  running: 'Running',
-  paused: 'Paused',
+  idle: 'Hazır',
+  running: 'Çalışıyor',
+  paused: 'Duraklatıldı',
 } as const
 
 function PlayIcon() {
@@ -56,7 +56,7 @@ export function TimerPanel() {
   const running = status === 'running'
   const idle = status === 'idle'
   const nothingToReset = status === 'idle' && remainingMs === durationMs
-  const primaryLabel = running ? 'Pause' : status === 'paused' ? 'Resume' : 'Start'
+  const primaryLabel = running ? 'Duraklat' : status === 'paused' ? 'Devam et' : 'Başlat'
 
   // Keyboard shortcuts read the freshest handlers without re-binding.
   const actionsRef = useRef({ primary: () => {}, reset: () => {} })
@@ -89,17 +89,17 @@ export function TimerPanel() {
   return (
     <Card
       className="grid__main"
-      title={mode === 'work' ? 'Focus session' : 'Break'}
+      title={mode === 'work' ? 'Odak oturumu' : 'Mola'}
       subtitle={
         mode === 'work'
-          ? 'Deep work, one session at a time'
-          : 'Step away, then come back sharp'
+          ? 'Derin çalışma, her seferinde tek oturum'
+          : 'Biraz uzaklaş, sonra dinç dön'
       }
       actions={<Badge tone={running ? 'accent' : 'neutral'}>{STATUS_LABEL[status]}</Badge>}
     >
       <div className="timer">
         <SegmentedControl<TimerMode>
-          label="Timer mode"
+          label="Zamanlayıcı modu"
           options={MODE_OPTIONS}
           value={mode}
           onChange={switchMode}
@@ -107,14 +107,14 @@ export function TimerPanel() {
 
         <ProgressRing progress={progress} status={status}>
           <p className="ring__mode">{MODE_LABEL[mode]}</p>
-          <p className="ring__time" role="timer" aria-label="Time remaining">
+          <p className="ring__time" role="timer" aria-label="Kalan süre">
             {formatClock(remainingMs)}
           </p>
           <p className="ring__state">{STATUS_LABEL[status]}</p>
         </ProgressRing>
 
         <p className="sr-only" aria-live="polite">
-          {`${MODE_LABEL[mode]} ${STATUS_LABEL[status].toLowerCase()}. ${Math.ceil(remainingMs / 60000)} minutes remaining.`}
+          {`${MODE_LABEL[mode]} ${STATUS_LABEL[status].toLowerCase()}. ${Math.ceil(remainingMs / 60000)} dakika kaldı.`}
         </p>
 
         <div className="timer__controls">
@@ -126,13 +126,13 @@ export function TimerPanel() {
             {primaryLabel}
           </Button>
           <Button size="lg" variant="ghost" onClick={reset} disabled={nothingToReset}>
-            Reset
+            Sıfırla
           </Button>
         </div>
 
         {mode === 'work' && (
           <div className="timer__presets">
-            <span className="timer__presets-label">Focus length</span>
+            <span className="timer__presets-label">Hazır süreler</span>
             <div className="timer__presets-row">
               {WORK_PRESETS.map((minutes) => {
                 const active = prefs.workMinutes === minutes
@@ -145,15 +145,15 @@ export function TimerPanel() {
                     disabled={!idle}
                     onClick={() => setWorkMinutes(minutes)}
                   >
-                    {minutes}m
+                    {minutes} dk
                   </button>
                 )
               })}
             </div>
             <p className="timer__hint">
               {idle
-                ? 'Or fine-tune the length in Timer settings. Shortcuts: Space to start or pause, R to reset.'
-                : 'Reset the timer to change its length.'}
+                ? 'Ya da süreyi Zamanlayıcı ayarlarından ince ayarla. Kısayollar: Başlatmak veya duraklatmak için Boşluk, sıfırlamak için R.'
+                : 'Süreyi değiştirmek için zamanlayıcıyı sıfırla.'}
             </p>
           </div>
         )}
@@ -161,8 +161,8 @@ export function TimerPanel() {
         {completedMode ? (
           <Notice tone={completedMode === 'work' ? 'accent' : 'info'}>
             {completedMode === 'work'
-              ? `Focus session complete — a ${prefs.breakMinutes} minute break is ready.`
-              : 'Break finished — ready for the next focus session?'}
+              ? `Odak oturumu tamamlandı — ${prefs.breakMinutes} dakikalık mola hazır.`
+              : 'Mola bitti — sıradaki odak oturumuna hazır mısın?'}
           </Notice>
         ) : null}
       </div>

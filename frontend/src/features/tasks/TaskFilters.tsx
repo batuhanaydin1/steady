@@ -2,9 +2,9 @@ import { SegmentedControl } from '../../components/ui/index.ts'
 import type { TaskFilter } from '../../types/api.ts'
 
 const LABELS: Record<TaskFilter, string> = {
-  all: 'All',
-  pending: 'Pending',
-  completed: 'Completed',
+  all: 'Tümü',
+  pending: 'Bekleyen',
+  completed: 'Tamamlanan',
 }
 
 interface TaskFiltersProps {
@@ -23,7 +23,7 @@ export function TaskFilters({ value, onChange, counts }: TaskFiltersProps) {
 
   return (
     <SegmentedControl<TaskFilter>
-      label="Filter tasks"
+      label="Görevleri filtrele"
       options={options}
       value={value}
       onChange={onChange}

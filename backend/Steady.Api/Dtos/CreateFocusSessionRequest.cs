@@ -12,7 +12,7 @@ public sealed class CreateFocusSessionRequest : IValidatableObject
     /// PostgreSQL's <c>timestamptz</c> only accepts offset 0, while a client is
     /// entitled to send its own offset.
     /// </summary>
-    [Required(ErrorMessage = "StartedAt is required.")]
+    [Required(ErrorMessage = "Başlangıç zamanı zorunlu.")]
     public DateTimeOffset? StartedAt
     {
         get => _startedAt;
@@ -20,14 +20,14 @@ public sealed class CreateFocusSessionRequest : IValidatableObject
     }
 
     /// <summary>When the countdown reached zero. Normalised to UTC.</summary>
-    [Required(ErrorMessage = "CompletedAt is required.")]
+    [Required(ErrorMessage = "Bitiş zamanı zorunlu.")]
     public DateTimeOffset? CompletedAt
     {
         get => _completedAt;
         set => _completedAt = value?.ToUniversalTime();
     }
 
-    [Range(1, 600, ErrorMessage = "DurationMinutes must be between 1 and 600.")]
+    [Range(1, 600, ErrorMessage = "Süre 1 ile 600 dakika arasında olmalıdır.")]
     public int DurationMinutes { get; set; }
 
     /// <summary>
@@ -47,7 +47,7 @@ public sealed class CreateFocusSessionRequest : IValidatableObject
         if (completedAt <= startedAt)
         {
             yield return new ValidationResult(
-                "CompletedAt must be after StartedAt.",
+                "Bitiş zamanı başlangıçtan sonra olmalıdır.",
                 [nameof(CompletedAt)]);
         }
     }

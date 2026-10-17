@@ -104,7 +104,7 @@ export function Modal({ open, title, description, onClose, footer, size = 'md', 
               </p>
             ) : null}
           </div>
-          <IconButton label="Close dialog" size="sm" onClick={onClose}>
+          <IconButton label="Pencereyi kapat" size="sm" onClick={onClose}>
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <path
                 d="M4 4l8 8M12 4l-8 8"

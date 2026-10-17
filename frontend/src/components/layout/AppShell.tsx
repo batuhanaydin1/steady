@@ -21,17 +21,17 @@ export function AppShell({ current, children }: AppShellProps) {
   return (
     <div className="shell">
       <a className="skip-link" href="#main-content">
-        Skip to content
+        İçeriğe geç
       </a>
 
       <header className="shell__header">
         <div className="shell__bar">
-          <a className="brand" href="#/focus" aria-label="Steady — go to Focus">
+          <a className="brand" href="#/focus" aria-label="Steady — Odak sayfasına git">
             <SteadyMark size={26} />
             <span className="brand__name">Steady</span>
           </a>
 
-          <nav className="nav" aria-label="Main">
+          <nav className="nav" aria-label="Ana menü">
             {ROUTES.map((route) => {
               const active = route.id === current.id
               return (
@@ -65,7 +65,7 @@ export function AppShell({ current, children }: AppShellProps) {
 
       <footer className="shell__footer">
         <span className="shell__footer-brand">Steady</span>
-        <span className="shell__footer-slogan">Build consistency. One session at a time.</span>
+        <span className="shell__footer-slogan">İstikrarı kur. Her seferinde bir oturum.</span>
         <AboutDialog />
       </footer>
     </div>

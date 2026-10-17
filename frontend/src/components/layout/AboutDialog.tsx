@@ -15,26 +15,26 @@ export function AboutDialog() {
   return (
     <>
       <button type="button" className="link-button" onClick={() => setOpen(true)}>
-        About Steady
+        Steady hakkında
       </button>
 
       <Modal
         open={open}
-        title="About Steady"
-        description="Build consistency. One session at a time."
+        title="Steady hakkında"
+        description="İstikrarı kur. Her seferinde bir oturum."
         size="sm"
         onClose={() => setOpen(false)}
         footer={
           <Button size="sm" onClick={() => setOpen(false)}>
-            Close
+            Kapat
           </Button>
         }
       >
         <p className="about__text">
-          Steady is a focus timer and task manager for everyday use. It is built as a portfolio
-          project with a real backend and a real database.
+          Steady, günlük kullanım için bir odak zamanlayıcısı ve görev yöneticisidir. Gerçek bir
+          arka uç ve gerçek bir veritabanıyla geliştirilmiş bir portföy projesidir.
         </p>
-        <p className="about__heading">Built with</p>
+        <p className="about__heading">Şunlarla geliştirildi</p>
         <ul className="planned__list">
           {STACK.map((item) => (
             <li key={item}>{item}</li>

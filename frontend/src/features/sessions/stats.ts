@@ -21,8 +21,8 @@ export interface SessionTotals {
 
 const EMPTY: SessionTotals = { minutes: 0, sessions: 0 }
 
-const WEEKDAY_FORMAT = new Intl.DateTimeFormat(undefined, { weekday: 'short' })
-const FULL_DAY_FORMAT = new Intl.DateTimeFormat(undefined, {
+const WEEKDAY_FORMAT = new Intl.DateTimeFormat('tr-TR', { weekday: 'short' })
+const FULL_DAY_FORMAT = new Intl.DateTimeFormat('tr-TR', {
   weekday: 'long',
   day: 'numeric',
   month: 'long',

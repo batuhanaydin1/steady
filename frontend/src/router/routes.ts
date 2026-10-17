@@ -12,27 +12,27 @@ export const DEFAULT_ROUTE: RouteId = 'focus'
 export const ROUTES: readonly RouteDefinition[] = [
   {
     id: 'focus',
-    label: 'Focus',
-    title: 'Focus',
-    description: 'Run a session and keep your streak alive.',
+    label: 'Odak',
+    title: 'Odak',
+    description: 'Bir oturum başlat, seriyi sürdür.',
   },
   {
     id: 'tasks',
-    label: 'Tasks',
-    title: 'Tasks',
-    description: 'Everything you want to get done.',
+    label: 'Görevler',
+    title: 'Görevler',
+    description: 'Yapmak istediğin her şey.',
   },
   {
     id: 'stats',
-    label: 'Stats',
-    title: 'Stats',
-    description: 'Your focus time over time.',
+    label: 'İstatistik',
+    title: 'İstatistik',
+    description: 'Odak sürenin zaman içindeki gelişimi.',
   },
   {
     id: 'settings',
-    label: 'Settings',
-    title: 'Settings',
-    description: 'Timer defaults, appearance and connection.',
+    label: 'Ayarlar',
+    title: 'Ayarlar',
+    description: 'Zamanlayıcı varsayılanları, görünüm ve bağlantı.',
   },
 ]
 

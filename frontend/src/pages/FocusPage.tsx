@@ -25,7 +25,7 @@ export function FocusPage({ onOpenTasks, onOpenStats }: FocusPageProps) {
 
         <TimerSettings />
 
-        <Card title="Today" subtitle="Focus time and sessions">
+        <Card title="Bugün" subtitle="Odak süresi ve oturumlar">
           <TodayStats />
         </Card>
 

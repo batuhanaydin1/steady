@@ -47,7 +47,7 @@ export function TaskEditDialog({ task, onClose, onSubmit }: TaskEditDialogProps)
       await onSubmit({ title, notes: normalizeNotes(notes) })
       onClose()
     } catch (caught) {
-      setFormError(caught instanceof Error ? caught.message : 'Could not save those changes.')
+      setFormError(caught instanceof Error ? caught.message : 'Değişiklikler kaydedilemedi.')
     } finally {
       setSubmitting(false)
     }
@@ -56,16 +56,16 @@ export function TaskEditDialog({ task, onClose, onSubmit }: TaskEditDialogProps)
   return (
     <Modal
       open
-      title="Edit task"
-      description="Update the title and notes."
+      title="Görev düzenle"
+      description="Başlığı ve notları güncelle."
       onClose={onClose}
       footer={
         <>
           <Button variant="secondary" onClick={onClose} disabled={submitting}>
-            Cancel
+            Vazgeç
           </Button>
           <Button type="submit" form="task-edit-form" loading={submitting}>
-            Save changes
+            Kaydet
           </Button>
         </>
       }
@@ -78,7 +78,7 @@ export function TaskEditDialog({ task, onClose, onSubmit }: TaskEditDialogProps)
         ) : null}
 
         <TextField
-          label="Title"
+          label="Başlık"
           value={title}
           maxLength={TITLE_MAX_LENGTH}
           error={titleError}
@@ -90,8 +90,8 @@ export function TaskEditDialog({ task, onClose, onSubmit }: TaskEditDialogProps)
         />
 
         <TextAreaField
-          label="Notes"
-          hint={`Optional, up to ${NOTES_MAX_LENGTH} characters.`}
+          label="Notlar"
+          hint={`İsteğe bağlı, en fazla ${NOTES_MAX_LENGTH} karakter.`}
           value={notes}
           maxLength={NOTES_MAX_LENGTH}
           error={notesError}

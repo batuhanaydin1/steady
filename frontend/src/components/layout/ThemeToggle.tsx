@@ -30,7 +30,7 @@ const THEME_OPTIONS: readonly SegmentedOption<Theme>[] = [
     value: 'light',
     label: (
       <>
-        <SunIcon /> Light
+        <SunIcon /> Açık
       </>
     ),
   },
@@ -38,7 +38,7 @@ const THEME_OPTIONS: readonly SegmentedOption<Theme>[] = [
     value: 'dark',
     label: (
       <>
-        <MoonIcon /> Dark
+        <MoonIcon /> Koyu
       </>
     ),
   },
@@ -51,7 +51,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <SegmentedControl<Theme>
       className={className}
-      label="Colour theme"
+      label="Renk teması"
       size="sm"
       options={THEME_OPTIONS}
       value={theme}

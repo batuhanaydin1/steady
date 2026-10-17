@@ -17,9 +17,9 @@ export function ActiveTaskCard({ onOpenTasks }: ActiveTaskCardProps) {
   const options = activeTask && activeTask.isCompleted ? [activeTask, ...pending] : pending
 
   const header = {
-    title: 'Focusing on',
-    subtitle: 'Link your focus time to a task',
-    actions: <Badge tone={activeTask ? 'accent' : 'neutral'}>{activeTask ? 'Linked' : 'None'}</Badge>,
+    title: 'Odaklandığın görev',
+    subtitle: 'Odak süreni bir göreve bağla',
+    actions: <Badge tone={activeTask ? 'accent' : 'neutral'}>{activeTask ? 'Bağlı' : 'Seçilmedi'}</Badge>,
   }
 
   if (state === 'loading') {
@@ -37,11 +37,11 @@ export function ActiveTaskCard({ onOpenTasks }: ActiveTaskCardProps) {
     return (
       <Card {...header}>
         <EmptyState
-          title="Tasks are unavailable"
-          description={loadError ?? 'The Steady API did not answer.'}
+          title="Görevlere ulaşılamıyor"
+          description={loadError ?? 'Steady API yanıt vermedi.'}
           action={
             <Button variant="secondary" size="sm" onClick={reload}>
-              Try again
+              Tekrar dene
             </Button>
           }
         />
@@ -53,11 +53,11 @@ export function ActiveTaskCard({ onOpenTasks }: ActiveTaskCardProps) {
     return (
       <Card {...header}>
         <EmptyState
-          title="No pending tasks"
-          description="Add a task and it becomes selectable here."
+          title="Bekleyen görev yok"
+          description="Bir görev ekle, burada seçilebilir hale gelsin."
           action={
             <Button variant="secondary" size="sm" onClick={onOpenTasks}>
-              Add a task
+              Görev ekle
             </Button>
           }
         />
@@ -70,21 +70,21 @@ export function ActiveTaskCard({ onOpenTasks }: ActiveTaskCardProps) {
       {...header}
       footer={
         <Button variant="ghost" size="sm" onClick={onOpenTasks}>
-          View all tasks
+          Tüm görevleri gör
         </Button>
       }
     >
       <div className="active-task">
         <SelectField
-          label="Task"
+          label="Görev"
           value={activeTaskId ?? ''}
-          hint="Steady keeps this selection with your timer."
+          hint="Steady bu seçimi zamanlayıcınla birlikte saklar."
           onChange={(event) => setActiveTask(event.target.value === '' ? null : event.target.value)}
         >
-          <option value="">No task — just focus</option>
+          <option value="">Görev yok — sadece odaklan</option>
           {options.map((task) => (
             <option key={task.id} value={task.id}>
-              {task.isCompleted ? `${task.title} (completed)` : task.title}
+              {task.isCompleted ? `${task.title} (tamamlandı)` : task.title}
             </option>
           ))}
         </SelectField>

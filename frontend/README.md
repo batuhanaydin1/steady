@@ -1,7 +1,8 @@
 # Steady — frontend
 
-The React + Vite + TypeScript app for **Steady**. It talks to the ASP.NET Core API in
-[`../backend/Steady.Api`](../backend/Steady.Api) and ships as static files.
+**Steady** için React + Vite + TypeScript uygulaması.
+[`../backend/Steady.Api`](../backend/Steady.Api) içindeki ASP.NET Core API'siyle konuşur ve statik
+dosyalar olarak yayınlanır.
 
 ```bash
 npm install
@@ -10,8 +11,8 @@ npm run lint     # oxlint
 npm run build    # tsc -b && vite build
 ```
 
-The API base URL is read from `VITE_API_BASE_URL` (see `.env.example`) and falls back to
-`http://localhost:5080`.
+API temel adresi `VITE_API_BASE_URL` üzerinden okunur (`.env.example` dosyasına bak) ve bulamazsa
+`http://localhost:5080` adresine düşer.
 
-Everything else — features, architecture, the database and the full setup steps — is documented
-in the [root README](../README.md).
+Geri kalan her şey — özellikler, mimari, veritabanı ve tüm kurulum adımları —
+[kök README](../README.md) dosyasında belgelenmiştir.

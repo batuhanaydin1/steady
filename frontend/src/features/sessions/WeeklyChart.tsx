@@ -18,7 +18,7 @@ interface WeeklyChartProps {
 export function WeeklyChart({ days, loading = false }: WeeklyChartProps) {
   if (loading) {
     return (
-      <div className="chart" aria-busy="true" aria-label="Loading focus time per day">
+      <div className="chart" aria-busy="true" aria-label="Günlük odak süresi yükleniyor">
         <ul className="chart__days">
           {[0, 1, 2, 3, 4, 5, 6].map((index) => (
             <li className="chart__day" key={index}>
@@ -41,8 +41,8 @@ export function WeeklyChart({ days, loading = false }: WeeklyChartProps) {
     <figure className="chart">
       <figcaption className="chart__caption">
         {total === 0
-          ? 'No focus time in the last seven days.'
-          : `${formatMinutes(total)} focused in the last seven days.`}
+          ? 'Son yedi günde odak süresi yok.'
+          : `Son yedi günde ${formatMinutes(total)} odaklanıldı.`}
       </figcaption>
 
       <ul className="chart__days">
@@ -68,7 +68,7 @@ export function WeeklyChart({ days, loading = false }: WeeklyChartProps) {
               </span>
 
               <span className="sr-only">
-                {day.label}: {empty ? 'no focus time' : formatMinutes(day.minutes)},{' '}
+                {day.label}: {empty ? 'odak süresi yok' : formatMinutes(day.minutes)},{' '}
                 {formatSessionCount(day.sessions)}.
               </span>
             </li>

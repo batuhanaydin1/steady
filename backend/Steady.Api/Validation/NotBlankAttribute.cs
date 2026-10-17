@@ -9,7 +9,7 @@ namespace Steady.Api.Validation;
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public sealed class NotBlankAttribute : ValidationAttribute
 {
-    public NotBlankAttribute() => ErrorMessage = "This field cannot be blank.";
+    public NotBlankAttribute() => ErrorMessage = "Bu alan boş bırakılamaz.";
 
     public override bool IsValid(object? value) => value is string text && text.Trim().Length > 0;
 }

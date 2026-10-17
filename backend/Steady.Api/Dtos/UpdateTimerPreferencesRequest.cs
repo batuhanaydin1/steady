@@ -13,13 +13,13 @@ public sealed class UpdateTimerPreferencesRequest
     [Range(
         TimerPreferences.WorkMinutesMin,
         TimerPreferences.WorkMinutesMax,
-        ErrorMessage = "WorkMinutes must be between 5 and 120.")]
+        ErrorMessage = "Odak süresi 5 ile 120 dakika arasında olmalıdır.")]
     public int WorkMinutes { get; set; }
 
     [Range(
         TimerPreferences.BreakMinutesMin,
         TimerPreferences.BreakMinutesMax,
-        ErrorMessage = "BreakMinutes must be between 1 and 30.")]
+        ErrorMessage = "Mola süresi 1 ile 30 dakika arasında olmalıdır.")]
     public int BreakMinutes { get; set; }
 
     public bool SoundEnabled { get; set; }

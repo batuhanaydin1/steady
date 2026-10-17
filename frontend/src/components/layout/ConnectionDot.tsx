@@ -2,9 +2,9 @@ import { useApiHealth } from '../../hooks/useApiHealth.ts'
 import { cn } from '../../utils/cn.ts'
 
 const LABELS = {
-  checking: 'Checking the Steady API connection',
-  online: 'Steady API connected',
-  offline: 'Steady API unavailable',
+  checking: 'Steady API bağlantısı kontrol ediliyor',
+  online: "Steady API'ye bağlı",
+  offline: 'Steady API kullanılamıyor',
 } as const
 
 /** Compact connection indicator for the header. Full details live on Settings. */
@@ -14,7 +14,7 @@ export function ConnectionDot() {
   // When the API is unreachable the dot becomes the retry control, so a
   // recovered backend does not need a full page reload.
   if (state.status === 'offline') {
-    const label = `${LABELS.offline} — click to try again`
+    const label = `${LABELS.offline} — tekrar denemek için tıkla`
 
     return (
       <button

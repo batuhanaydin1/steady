@@ -28,15 +28,15 @@ export function TaskComposer({ onCreate, saving }: TaskComposerProps) {
       await onCreate({ title, notes: null })
       setTitle('')
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : 'Could not add that task.')
+      setError(caught instanceof Error ? caught.message : 'Görev eklenemedi.')
     }
   }
 
   return (
     <form className="task-composer" onSubmit={submit} noValidate>
       <TextField
-        label="New task"
-        placeholder="What do you want to focus on?"
+        label="Yeni görev"
+        placeholder="Neye odaklanmak istiyorsun?"
         value={title}
         maxLength={TITLE_MAX_LENGTH}
         error={error}
@@ -48,7 +48,7 @@ export function TaskComposer({ onCreate, saving }: TaskComposerProps) {
         }}
       />
       <Button type="submit" loading={saving} disabled={title.trim().length === 0}>
-        Add task
+        Görev ekle
       </Button>
     </form>
   )

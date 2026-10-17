@@ -47,7 +47,7 @@ export function SessionsProvider({ children }: { children: ReactNode }) {
         if (!active) return
         if (error instanceof DOMException && error.name === 'AbortError') return
         setState('error')
-        setLoadError(messageFor(error, 'Could not load your session history.'))
+        setLoadError(messageFor(error, 'Oturum geçmişi yüklenemedi.'))
       })
 
     return () => {

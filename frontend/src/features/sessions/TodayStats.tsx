@@ -23,13 +23,13 @@ export function TodayStats() {
   }
 
   if (state === 'error') {
-    return <p className="stat__hint">Unavailable while the Steady API is offline.</p>
+    return <p className="stat__hint">Steady API'si çevrimdışıyken kullanılamaz.</p>
   }
 
   return (
     <div className="stat-grid">
-      <StatTile value={formatMinutes(today.minutes)} hint="Focused" />
-      <StatTile value={String(today.sessions)} hint={today.sessions === 1 ? 'Session' : 'Sessions'} />
+      <StatTile value={formatMinutes(today.minutes)} hint="Odaklanıldı" />
+      <StatTile value={String(today.sessions)} hint="Oturum" />
     </div>
   )
 }

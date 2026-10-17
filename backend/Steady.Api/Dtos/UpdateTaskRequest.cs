@@ -5,11 +5,14 @@ namespace Steady.Api.Dtos;
 
 public sealed class UpdateTaskRequest
 {
-    [NotBlank(ErrorMessage = "A title is required.")]
-    [StringLength(200, MinimumLength = 1, ErrorMessage = "The title must be between 1 and 200 characters.")]
+    [NotBlank(ErrorMessage = "Başlık zorunlu.")]
+    [StringLength(
+        200,
+        MinimumLength = 1,
+        ErrorMessage = "Başlık 1 ile 200 karakter arasında olmalıdır.")]
     public string Title { get; set; } = string.Empty;
 
-    [StringLength(2000, ErrorMessage = "Notes must be 2000 characters or fewer.")]
+    [StringLength(2000, ErrorMessage = "Notlar en fazla 2000 karakter olabilir.")]
     public string? Notes { get; set; }
 
     public bool IsCompleted { get; set; }

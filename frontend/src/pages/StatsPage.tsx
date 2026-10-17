@@ -34,13 +34,13 @@ export function StatsPage() {
   if (state === 'error') {
     return (
       <div className="grid">
-        <Card title="Statistics" subtitle="Focus time recorded by Steady">
+        <Card title="İstatistikler" subtitle="Steady ile kaydedilen odak süresi">
           <EmptyState
-            title="Could not load your statistics"
-            description={loadError ?? 'The Steady API did not answer.'}
+            title="İstatistikler yüklenemedi"
+            description={loadError ?? 'Steady API yanıt vermedi.'}
             action={
               <Button variant="secondary" size="sm" onClick={reload}>
-                Try again
+                Tekrar dene
               </Button>
             }
           />
@@ -54,7 +54,7 @@ export function StatsPage() {
 
   return (
     <div className="grid grid--stats">
-      <Card title="Focus today">
+      <Card title="Bugünkü odak">
         {loading ? (
           <StatTileSkeleton />
         ) : (
@@ -62,40 +62,40 @@ export function StatsPage() {
         )}
       </Card>
 
-      <Card title="Sessions today">
+      <Card title="Bugünkü oturumlar">
         {loading ? (
           <StatTileSkeleton />
         ) : (
           <StatTile
             value={String(today.sessions)}
-            hint={today.sessions === 0 ? 'None yet today' : `Averaging ${average} min`}
+            hint={today.sessions === 0 ? 'Bugün henüz yok' : `Ortalama ${average} dk`}
           />
         )}
       </Card>
 
-      <Card title="Focus this week">
+      <Card title="Bu haftaki odak">
         {loading ? (
           <StatTileSkeleton />
         ) : (
           <StatTile
             value={formatMinutes(week.minutes)}
-            hint={`${formatSessionCount(week.sessions)} since Monday`}
+            hint={`Pazartesi'den beri ${formatSessionCount(week.sessions)}`}
           />
         )}
       </Card>
 
       <Card
         className="grid__wide"
-        title="Focus time per day"
-        subtitle="Minutes focused each day"
+        title="Günlük odak süresi"
+        subtitle="Her gün odaklanılan dakika"
       >
         <WeeklyChart days={days} loading={loading} />
       </Card>
 
       <Card
         className="grid__wide"
-        title="Session history"
-        subtitle="Newest first, grouped by day"
+        title="Oturum geçmişi"
+        subtitle="En yeni önce, güne göre gruplu"
       >
         <SessionLog />
       </Card>

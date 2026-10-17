@@ -68,13 +68,13 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
     response = await fetch(url, { ...init, headers })
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') throw error
-    throw new ApiError('Could not reach the Steady API.', 0, error)
+    throw new ApiError("Steady API'sine ulaşılamadı.", 0, error)
   }
 
   if (!response.ok) {
     const details = await readJson(response)
     const message =
-      extractMessage(details) ?? `The server responded with status ${response.status}.`
+      extractMessage(details) ?? `Sunucu ${response.status} durum koduyla yanıt verdi.`
     throw new ApiError(message, response.status, details)
   }
 
