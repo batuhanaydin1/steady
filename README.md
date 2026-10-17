@@ -10,33 +10,6 @@ a real, working feature set — not a static mockup.
 
 ---
 
-## Screenshots
-
-**Focus** — the timer, today's totals and your most recent sessions.
-
-![The Focus screen in dark mode: the circular timer reading 25:00 with Start, the quick presets, today's focus total and the most recent sessions](docs/screenshots/focus-dark.png)
-
-**Tasks** — quick add, filters with live counts and the task list.
-
-![The Tasks screen in dark mode: the quick-add form, the All / Pending / Completed filter with counts, and a list of partly completed tasks](docs/screenshots/tasks-dark.png)
-
-**Stats** — today, this week and the last seven days, drawn without a chart library.
-
-![The Stats screen in dark mode: summary tiles for today and this week, and a seven-day bar chart](docs/screenshots/stats-dark.png)
-
-**Light theme** — the same app, one token file away.
-
-![The Focus screen in light mode](docs/screenshots/focus-light.png)
-
-**Phone width (390px)** — the same screens, one column.
-
-![The Focus screen at phone width, showing the timer and the single-column layout](docs/screenshots/focus-phone.png)
-
-> The five files above live in `docs/screenshots/`; see the note in that folder for how each
-> shot was taken.
-
----
-
 ## Status
 
 | Phase | Scope | State |
