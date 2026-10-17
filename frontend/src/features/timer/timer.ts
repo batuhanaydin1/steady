@@ -10,7 +10,7 @@
 export type TimerMode = 'work' | 'break'
 export type TimerStatus = 'idle' | 'running' | 'paused'
 
-export const WORK_MIN_MINUTES = 30
+export const WORK_MIN_MINUTES = 1
 export const WORK_MAX_MINUTES = 120
 export const BREAK_MIN_MINUTES = 1
 export const BREAK_MAX_MINUTES = 30

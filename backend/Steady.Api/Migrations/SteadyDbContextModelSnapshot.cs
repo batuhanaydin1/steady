@@ -139,7 +139,7 @@ namespace Steady.Api.Migrations
 
                             t.HasCheckConstraint("ck_timer_preferences_singleton", "id = 1");
 
-                            t.HasCheckConstraint("ck_timer_preferences_work_minutes", "work_minutes between 30 and 120");
+                            t.HasCheckConstraint("ck_timer_preferences_work_minutes", "work_minutes between 1 and 120");
                         });
                 });
 

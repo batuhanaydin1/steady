@@ -31,7 +31,7 @@ profesyonel bir portföy projesi olarak geliştirilmiştir — statik bir maket 
 
 **Şu anda hazır**
 
-- **Odak zamanlayıcısı** — 30–120 dk odak ve 1–30 dk mola, hazır süreler (30/45/60/90),
+- **Odak zamanlayıcısı** — 1–120 dk odak ve 1–30 dk mola, hazır süreler (30/45/60/90),
   başlat / duraklat / devam et / sıfırla, mod değiştirme, dairesel ilerleme, sesli ve görsel uyarı
   ve arka plandaki bir sekmede ya da sayfa yenilendikten sonra da doğru kalan bir geri sayım.
 - **Görevler** — doğrulama, filtreler ve RFC 9457 hata yanıtları içeren, PostgreSQL destekli gerçek
@@ -250,7 +250,7 @@ ekranındayken de çalışan bir oturum tik atmaya devam eder ve seni uyarabilir
 | Başlat / Duraklat / Devam et | Mevcut durumu yansıtan tek ana buton |
 | Sıfırla | Geçerli modu tam süresine döndürür |
 | Hazır süreler | 30 / 45 / 60 / 90 dakika (yalnızca bekleme durumunda) |
-| Odak süresi | 30–120 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
+| Odak süresi | 1–120 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
 | Mola süresi | 1–30 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
 | Sesli uyarı | Web Audio API ile üretilen kısa iki notalı zil sesi — ses dosyası yok |
 | Masaüstü bildirimi | İsteğe bağlı; etkinleştirdiğinde tarayıcı bir kez izin ister |
@@ -471,7 +471,7 @@ Her tablo snake_case adlar kullanır ve depodaki migration'larla oluşturulur.
 | Sütun | Tür | Notlar |
 | ----- | --- | ------ |
 | `id` | `smallint` | Birincil anahtar, `ck_timer_preferences_singleton` check constraint'i ile `1`'e sabitlenmiştir |
-| `work_minutes` | `integer` | Zorunlu, `30–120` (check constraint) |
+| `work_minutes` | `integer` | Zorunlu, `1–120` (check constraint) |
 | `break_minutes` | `integer` | Zorunlu, `1–30` (check constraint) |
 | `sound_enabled` | `boolean` | Zorunlu |
 | `notifications_enabled` | `boolean` | Zorunlu; kullanıcının niyeti, verilmiş bir izin değil |
