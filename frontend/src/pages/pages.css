@@ -1,6 +1,5 @@
 /* =========================================================================
-   Page-level layout, plus the skeleton placeholders that still stand in for a
-   later phase (persisted timer preferences).
+   Page-level layout and the pieces the screens share.
    ========================================================================= */
 
 .grid {
@@ -44,38 +43,6 @@
   min-width: 0;
 }
 
-/* ---------- Focus page placeholders ---------- */
-
-.placeholder-ring {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-5) 0;
-  text-align: center;
-}
-
-.placeholder-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  padding-top: var(--space-4);
-  border-top: 1px dashed var(--border);
-}
-
-.placeholder-controls__buttons {
-  display: flex;
-  gap: var(--space-3);
-}
-
-.placeholder-controls__pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2);
-}
-
 .placeholder-note {
   max-width: 44ch;
   color: var(--text-muted);
@@ -88,36 +55,7 @@
   color: var(--text-faint);
 }
 
-/* ---------- List placeholders ---------- */
-
-.list-placeholder {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.list-placeholder__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-/* ---------- Planned feature list ---------- */
-
-.planned {
-  margin-top: var(--space-5);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border);
-}
-
-.planned__title {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
+/* ---------- Stack list (About dialog) ---------- */
 
 .planned__list {
   margin: var(--space-3) 0 0;
