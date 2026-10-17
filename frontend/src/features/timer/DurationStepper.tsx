@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import { IconButton } from '../../components/ui/index.ts'
 
 interface DurationStepperProps {
@@ -32,12 +32,25 @@ function PlusIcon() {
   )
 }
 
-/** Inline +/- control for a bounded number of minutes. */
+/**
+ * Inline +/- control for a bounded number of minutes.
+ *
+ * The field holds what is being typed as local text: clamping every keystroke
+ * would turn "45" into the minimum as soon as the "4" landed.
+ */
 export function DurationStepper({ label, value, min, max, onChange, disabled = false }: DurationStepperProps) {
   const inputId = useId()
+  const [draft, setDraft] = useState<string | null>(null)
 
   const setValue = (next: number) => {
+    setDraft(null)
     onChange(Math.min(Math.max(next, min), max))
+  }
+
+  const commitDraft = (raw: string) => {
+    const parsed = Number.parseInt(raw, 10)
+    setDraft(null)
+    if (!Number.isNaN(parsed)) setValue(parsed)
   }
 
   return (
@@ -58,14 +71,17 @@ export function DurationStepper({ label, value, min, max, onChange, disabled = f
           id={inputId}
           className="stepper__input"
           type="number"
+          inputMode="numeric"
           min={min}
           max={max}
           step={1}
-          value={value}
+          value={draft ?? value}
           disabled={disabled}
-          onChange={(event) => {
-            const parsed = Number.parseInt(event.target.value, 10)
-            if (!Number.isNaN(parsed)) setValue(parsed)
+          onChange={(event) => setDraft(event.target.value)}
+          onBlur={(event) => commitDraft(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') commitDraft(event.currentTarget.value)
+            else if (event.key === 'Escape') setDraft(null)
           }}
         />
         <span className="stepper__unit">dk</span>

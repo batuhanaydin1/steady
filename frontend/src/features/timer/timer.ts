@@ -10,12 +10,12 @@
 export type TimerMode = 'work' | 'break'
 export type TimerStatus = 'idle' | 'running' | 'paused'
 
-export const WORK_MIN_MINUTES = 5
+export const WORK_MIN_MINUTES = 30
 export const WORK_MAX_MINUTES = 120
 export const BREAK_MIN_MINUTES = 1
 export const BREAK_MAX_MINUTES = 30
 
-export const WORK_PRESETS = [15, 25, 30, 45, 60, 90] as const
+export const WORK_PRESETS = [30, 45, 60, 90] as const
 
 export const MODE_LABEL: Record<TimerMode, string> = {
   work: 'Odak',
@@ -30,7 +30,7 @@ export interface TimerPreferences {
 }
 
 export const DEFAULT_PREFERENCES: TimerPreferences = {
-  workMinutes: 25,
+  workMinutes: 30,
   breakMinutes: 5,
   soundEnabled: true,
   notificationsEnabled: false,

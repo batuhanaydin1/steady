@@ -17,12 +17,12 @@ public class TimerPreferences
     /// <summary>The only key this table accepts.</summary>
     public const short SingletonId = 1;
 
-    public const int WorkMinutesMin = 5;
+    public const int WorkMinutesMin = 30;
     public const int WorkMinutesMax = 120;
     public const int BreakMinutesMin = 1;
     public const int BreakMinutesMax = 30;
 
-    public const int DefaultWorkMinutes = 25;
+    public const int DefaultWorkMinutes = 30;
     public const int DefaultBreakMinutes = 5;
     public const bool DefaultSoundEnabled = true;
     public const bool DefaultNotificationsEnabled = false;

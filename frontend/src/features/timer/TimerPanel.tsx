@@ -1,9 +1,18 @@
 import { useEffect, useRef } from 'react'
 import { Badge, Button, Card, Notice, SegmentedControl } from '../../components/ui/index.ts'
 import { cn } from '../../utils/cn.ts'
+import { DurationStepper } from './DurationStepper.tsx'
 import { ProgressRing } from './ProgressRing.tsx'
 import { useTimer } from './timerContext.ts'
-import { formatClock, MODE_LABEL, WORK_PRESETS } from './timer.ts'
+import {
+  BREAK_MAX_MINUTES,
+  BREAK_MIN_MINUTES,
+  formatClock,
+  MODE_LABEL,
+  WORK_MAX_MINUTES,
+  WORK_MIN_MINUTES,
+  WORK_PRESETS,
+} from './timer.ts'
 import type { TimerMode } from './timer.ts'
 
 const MODE_OPTIONS = [
@@ -16,6 +25,8 @@ const STATUS_LABEL = {
   running: 'Çalışıyor',
   paused: 'Duraklatıldı',
 } as const
+
+const SHORTCUT_HINT = 'Kısayollar: Başlatmak veya duraklatmak için Boşluk, sıfırlamak için R.'
 
 function PlayIcon() {
   return (
@@ -51,12 +62,18 @@ export function TimerPanel() {
     reset,
     switchMode,
     setWorkMinutes,
+    setBreakMinutes,
   } = useTimer()
 
   const running = status === 'running'
   const idle = status === 'idle'
   const nothingToReset = status === 'idle' && remainingMs === durationMs
   const primaryLabel = running ? 'Duraklat' : status === 'paused' ? 'Devam et' : 'Başlat'
+  const durationHint = !idle
+    ? 'Süreyi değiştirmek için zamanlayıcıyı sıfırla.'
+    : mode === 'work'
+      ? `Süreyi hazır seçeneklerden seç ya da elle yaz. ${SHORTCUT_HINT}`
+      : `Molayı elle ayarla. ${SHORTCUT_HINT}`
 
   // Keyboard shortcuts read the freshest handlers without re-binding.
   const actionsRef = useRef({ primary: () => {}, reset: () => {} })
@@ -130,33 +147,42 @@ export function TimerPanel() {
           </Button>
         </div>
 
-        {mode === 'work' && (
-          <div className="timer__presets">
-            <span className="timer__presets-label">Hazır süreler</span>
-            <div className="timer__presets-row">
-              {WORK_PRESETS.map((minutes) => {
-                const active = prefs.workMinutes === minutes
-                return (
-                  <button
-                    key={minutes}
-                    type="button"
-                    className={cn('preset', active && 'preset--active')}
-                    aria-pressed={active}
-                    disabled={!idle}
-                    onClick={() => setWorkMinutes(minutes)}
-                  >
-                    {minutes} dk
-                  </button>
-                )
-              })}
-            </div>
-            <p className="timer__hint">
-              {idle
-                ? 'Ya da süreyi Zamanlayıcı ayarlarından ince ayarla. Kısayollar: Başlatmak veya duraklatmak için Boşluk, sıfırlamak için R.'
-                : 'Süreyi değiştirmek için zamanlayıcıyı sıfırla.'}
-            </p>
-          </div>
-        )}
+        <div className="timer__durations">
+          {mode === 'work' ? (
+            <>
+              <span className="timer__durations-label">Hazır süreler</span>
+              <div className="timer__durations-row">
+                {WORK_PRESETS.map((minutes) => {
+                  const active = prefs.workMinutes === minutes
+                  return (
+                    <button
+                      key={minutes}
+                      type="button"
+                      className={cn('preset', active && 'preset--active')}
+                      aria-pressed={active}
+                      disabled={!idle}
+                      onClick={() => setWorkMinutes(minutes)}
+                    >
+                      {minutes} dk
+                    </button>
+                  )
+                })}
+              </div>
+            </>
+          ) : null}
+
+          <DurationStepper
+            key={mode}
+            label={mode === 'work' ? 'Odak süresi' : 'Mola süresi'}
+            value={mode === 'work' ? prefs.workMinutes : prefs.breakMinutes}
+            min={mode === 'work' ? WORK_MIN_MINUTES : BREAK_MIN_MINUTES}
+            max={mode === 'work' ? WORK_MAX_MINUTES : BREAK_MAX_MINUTES}
+            onChange={mode === 'work' ? setWorkMinutes : setBreakMinutes}
+            disabled={!idle}
+          />
+
+          <p className="timer__hint">{durationHint}</p>
+        </div>
 
         {completedMode ? (
           <Notice tone={completedMode === 'work' ? 'accent' : 'info'}>

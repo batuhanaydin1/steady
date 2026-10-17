@@ -31,7 +31,7 @@ profesyonel bir portföy projesi olarak geliştirilmiştir — statik bir maket 
 
 **Şu anda hazır**
 
-- **Odak zamanlayıcısı** — 5–120 dk odak ve 1–30 dk mola, hazır süreler (15/25/30/45/60/90),
+- **Odak zamanlayıcısı** — 30–120 dk odak ve 1–30 dk mola, hazır süreler (30/45/60/90),
   başlat / duraklat / devam et / sıfırla, mod değiştirme, dairesel ilerleme, sesli ve görsel uyarı
   ve arka plandaki bir sekmede ya da sayfa yenilendikten sonra da doğru kalan bir geri sayım.
 - **Görevler** — doğrulama, filtreler ve RFC 9457 hata yanıtları içeren, PostgreSQL destekli gerçek
@@ -249,9 +249,9 @@ ekranındayken de çalışan bir oturum tik atmaya devam eder ve seni uyarabilir
 | Mod | İstediğin zaman **Odak** ve **Mola** arasında geçiş yap |
 | Başlat / Duraklat / Devam et | Mevcut durumu yansıtan tek ana buton |
 | Sıfırla | Geçerli modu tam süresine döndürür |
-| Hazır süreler | 15 / 25 / 30 / 45 / 60 / 90 dakika (yalnızca bekleme durumunda) |
-| Odak süresi | 5–120 dakika, 1'er dakikalık adımlarla ayarlanır |
-| Mola süresi | 1–30 dakika, 1'er dakikalık adımlarla ayarlanır |
+| Hazır süreler | 30 / 45 / 60 / 90 dakika (yalnızca bekleme durumunda) |
+| Odak süresi | 30–120 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
+| Mola süresi | 1–30 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
 | Sesli uyarı | Web Audio API ile üretilen kısa iki notalı zil sesi — ses dosyası yok |
 | Masaüstü bildirimi | İsteğe bağlı; etkinleştirdiğinde tarayıcı bir kez izin ister |
 
@@ -431,12 +431,12 @@ bağlantı olmadan kaydedilir.
 
 ```json
 { "id": "01a14857-201a-7e4d-8ba4-f78189ae71a9", "taskId": null,
-  "taskTitle": "Write the README", "durationMinutes": 25,
-  "startedAt": "2026-10-16T06:05:00+00:00", "completedAt": "2026-10-16T06:30:00+00:00" }
+  "taskTitle": "Write the README", "durationMinutes": 30,
+  "startedAt": "2026-10-16T06:05:00+00:00", "completedAt": "2026-10-16T06:35:00+00:00" }
 ```
 
 ```json
-{ "workMinutes": 25, "breakMinutes": 5, "soundEnabled": true,
+{ "workMinutes": 30, "breakMinutes": 5, "soundEnabled": true,
   "notificationsEnabled": false, "updatedAt": "2026-10-17T05:53:54.514868+00:00" }
 ```
 
@@ -471,7 +471,7 @@ Her tablo snake_case adlar kullanır ve depodaki migration'larla oluşturulur.
 | Sütun | Tür | Notlar |
 | ----- | --- | ------ |
 | `id` | `smallint` | Birincil anahtar, `ck_timer_preferences_singleton` check constraint'i ile `1`'e sabitlenmiştir |
-| `work_minutes` | `integer` | Zorunlu, `5–120` (check constraint) |
+| `work_minutes` | `integer` | Zorunlu, `30–120` (check constraint) |
 | `break_minutes` | `integer` | Zorunlu, `1–30` (check constraint) |
 | `sound_enabled` | `boolean` | Zorunlu |
 | `notifications_enabled` | `boolean` | Zorunlu; kullanıcının niyeti, verilmiş bir izin değil |
