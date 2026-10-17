@@ -57,7 +57,7 @@ export function TimerSettings() {
       <div className="timer-settings__switches">
         <Switch
           label="Sesli uyarı"
-          hint="Oturum bittiğinde kısa bir zil sesi."
+          hint="Oturum bittiğinde zil sesi çalar."
           checked={prefs.soundEnabled}
           onChange={setSoundEnabled}
         />

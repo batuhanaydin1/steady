@@ -1,5 +1,5 @@
 /**
- * End-of-session alerts: a short two-note chime generated with the Web Audio
+ * End-of-session alerts: a four-note chime generated with the Web Audio
  * API (no audio files or libraries) and an optional OS notification.
  */
 
@@ -26,7 +26,12 @@ export function unlockAudio(): void {
   }
 }
 
-/** Plays a soft two-note bell to signal the end of a session. */
+/**
+ * Plays a soft four-note bell to signal the end of a session.
+ *
+ * The notes are left ringing while the next one starts, so the chime carries
+ * for about two and a half seconds instead of passing in a blink.
+ */
 export function playChime(): void {
   const context = getAudioContext()
   if (!context) return
@@ -35,24 +40,26 @@ export function playChime(): void {
   }
 
   const start = context.currentTime
-  const notes = [880, 1174.66] // A5, D6
+  const notes = [880, 1174.66, 1479.98, 1760] // A5, D6, F#6, A6
+  const spacing = 0.32
+  const ring = 1.5
 
   notes.forEach((frequency, index) => {
     const oscillator = context.createOscillator()
     const gain = context.createGain()
-    const noteStart = start + index * 0.18
+    const noteStart = start + index * spacing
 
     oscillator.type = 'sine'
     oscillator.frequency.value = frequency
 
     gain.gain.setValueAtTime(0, noteStart)
     gain.gain.linearRampToValueAtTime(0.2, noteStart + 0.02)
-    gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.6)
+    gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + ring)
 
     oscillator.connect(gain)
     gain.connect(context.destination)
     oscillator.start(noteStart)
-    oscillator.stop(noteStart + 0.65)
+    oscillator.stop(noteStart + ring + 0.05)
   })
 }
 

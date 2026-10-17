@@ -252,7 +252,7 @@ ekranındayken de çalışan bir oturum tik atmaya devam eder ve seni uyarabilir
 | Hazır süreler | 30 / 45 / 60 / 90 dakika (yalnızca bekleme durumunda) |
 | Odak süresi | 1–120 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
 | Mola süresi | 1–30 dakika, 1'er dakikalık adımlarla; Odak ekranında ya da Ayarlar'da elle yazılır |
-| Sesli uyarı | Web Audio API ile üretilen kısa iki notalı zil sesi — ses dosyası yok |
+| Sesli uyarı | Web Audio API ile üretilen dört notalı zil sesi, ~2,5 saniye — ses dosyası yok |
 | Masaüstü bildirimi | İsteğe bağlı; etkinleştirdiğinde tarayıcı bir kez izin ister |
 
 Klavye kısayolları: **Boşluk** başlatır veya duraklatır, **R** sıfırlar. Sen yazarken ya da bir
